@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport locked to desktop width so mobile phones render the laptop view -->
-    <meta name="viewport" content="width=1240, user-scalable=yes">
+    <!-- Clean, fluid mobile viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DISTRICT 09 | Contemporary Menswear & Tailoring</title>
     <link rel="icon" href="favicon.png" type="image/png">
 
@@ -18,11 +18,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
-            min-width: 1240px;
         }
 
         body {
@@ -31,7 +31,7 @@
             color: #171717;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            min-width: 1240px;
+            overflow-x: hidden;
         }
 
         body.modal-open {
@@ -61,11 +61,10 @@
             background-color: #171717;
             color: #ffffff;
             text-align: center;
-            padding: 10px 15px;
+            padding: 9px 12px;
             font-size: 11px;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             font-weight: 600;
-            min-width: 1240px;
         }
 
         /* NAVIGATION */
@@ -75,21 +74,20 @@
             position: sticky;
             top: 0;
             z-index: 20;
-            min-width: 1240px;
         }
 
         nav {
             max-width: 1240px;
             margin: auto;
-            padding: 18px 30px;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 800;
             letter-spacing: -0.5px;
             white-space: nowrap;
@@ -105,7 +103,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 26px;
         }
 
         .nav-links a {
@@ -122,7 +120,7 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
         }
 
         .size-guide-trigger {
@@ -135,6 +133,7 @@
             text-underline-offset: 4px;
             color: #69734d;
             transition: opacity 0.2s;
+            padding: 4px 0;
         }
 
         .size-guide-trigger:hover {
@@ -152,28 +151,28 @@
         .hero {
             max-width: 1240px;
             margin: auto;
-            padding: 70px 30px;
+            padding: 60px 24px;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
-            gap: 60px;
+            gap: 48px;
         }
 
         .eyebrow {
             color: #69734d;
             font-size: 11px;
             font-weight: 800;
-            letter-spacing: 2.5px;
-            margin-bottom: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
             text-transform: uppercase;
         }
 
         .hero h1 {
-            font-size: 64px;
-            line-height: 0.98;
-            letter-spacing: -2.5px;
+            font-size: clamp(38px, 5.2vw, 68px);
+            line-height: 1.02;
+            letter-spacing: -2px;
             font-weight: 800;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .hero h1 span {
@@ -183,13 +182,13 @@
         .hero-description {
             max-width: 460px;
             color: #5c5952;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             font-size: 15px;
         }
 
         .hero-actions {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
@@ -197,12 +196,13 @@
             display: inline-block;
             background-color: #171717;
             color: #ffffff;
-            padding: 14px 28px;
+            padding: 13px 26px;
             border: 1px solid #171717;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            text-align: center;
         }
 
         .button:hover {
@@ -239,20 +239,20 @@
         .collection {
             max-width: 1240px;
             margin: auto;
-            padding: 40px 30px 80px;
+            padding: 30px 24px 70px;
         }
 
         .collection-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 18px;
         }
 
         .section-heading h2 {
-            font-size: 30px;
+            font-size: clamp(24px, 3.2vw, 32px);
             letter-spacing: -1px;
             font-weight: 800;
             line-height: 1.2;
@@ -260,27 +260,31 @@
 
         .section-heading > p:last-child {
             color: #6b675e;
-            margin-top: 6px;
-            font-size: 14px;
+            margin-top: 4px;
+            font-size: 13px;
         }
 
         .filter-tabs {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             border-bottom: 1px solid #dedbd2;
             padding-bottom: 2px;
+            overflow-x: auto;
+            white-space: nowrap;
+            max-width: 100%;
         }
 
         .filter-btn {
             background: none;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 14px;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1px;
             color: #77746d;
             position: relative;
             transition: all 0.2s;
+            flex-shrink: 0;
         }
 
         .filter-btn.active {
@@ -297,7 +301,7 @@
             background-color: #69734d;
         }
 
-        /* PRODUCT GRID (Consistently 3 columns) */
+        /* PRODUCT GRID: 3 cols on desktop, 2 cols on mobile */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -320,15 +324,17 @@
             width: 100%;
             aspect-ratio: 3 / 4;
             overflow: hidden;
-            background-color: #ebe7de;
-            margin-bottom: 14px;
+            background-color: #ffffff;
+            border: 1px solid #e8e5dc;
+            margin-bottom: 12px;
         }
 
         .product-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.25s ease, transform 0.5s ease;
+            background-color: #ffffff;
+            transition: opacity 0.25s ease, transform 0.4s ease;
         }
 
         .product-image.fade-out {
@@ -336,7 +342,24 @@
         }
 
         .product-card:not(.sold-out):hover .product-image {
-            transform: scale(1.04);
+            transform: scale(1.03);
+        }
+
+        /* PANTS FULL VIEW & INSET PADDING */
+        .coming-soon-card .image-container {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-soon-card .product-image {
+            object-fit: contain;
+            height: 100%;
+            width: 100%;
+            padding: 22px 14px;
+            transform: scale(0.85);
+            transform-origin: center center;
         }
 
         /* QUICK SIZE SELECTOR OVERLAY */
@@ -345,14 +368,14 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(23, 23, 23, 0.95);
-            padding: 12px;
+            background: rgba(23, 23, 23, 0.94);
+            padding: 10px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             opacity: 0;
             transform: translateY(100%);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 6;
         }
 
@@ -365,7 +388,7 @@
             color: #aaa79f;
             font-size: 10px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-align: center;
         }
 
@@ -379,7 +402,7 @@
             background: #2a2a2a;
             color: #fff;
             border: 1px solid #444;
-            padding: 7px 16px;
+            padding: 6px 14px;
             font-size: 11px;
             font-weight: 700;
             transition: all 0.2s;
@@ -392,10 +415,11 @@
 
         /* COLOR SELECTOR SWATCHES */
         .color-selector {
-            margin: 8px 0 10px 0;
+            margin: 6px 0 8px 0;
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .color-label {
@@ -424,7 +448,7 @@
             position: relative;
         }
 
-        .swatch:hover {
+        .swatch:hover, .swatch:active {
             transform: scale(1.15);
         }
 
@@ -446,7 +470,7 @@
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 1px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             text-transform: uppercase;
         }
 
@@ -462,11 +486,11 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 12px;
+            gap: 10px;
         }
 
         .product-info h3 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             letter-spacing: -0.2px;
         }
@@ -475,12 +499,12 @@
             font-size: 11px;
             color: #69734d;
             font-weight: 700;
-            margin-top: 4px;
+            margin-top: 3px;
             display: block;
         }
 
         .price {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             white-space: nowrap;
         }
@@ -498,42 +522,43 @@
             transform: translate(-50%, -50%);
             background: #171717;
             color: #ffffff;
-            padding: 8px 18px;
-            font-size: 11px;
+            padding: 7px 16px;
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             border: 1px solid #ffffff33;
             z-index: 5;
+            white-space: nowrap;
         }
 
         /* COMING SOON / ANTICIPATION CARDS */
         .coming-soon-badge {
             position: absolute;
-            top: 14px;
-            right: 14px;
+            top: 10px;
+            right: 10px;
             background: #171717;
             color: #ffffff;
-            padding: 6px 12px;
-            font-size: 10px;
+            padding: 5px 10px;
+            font-size: 9px;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             z-index: 4;
         }
 
         .notify-button {
             width: 100%;
-            margin-top: 10px;
-            padding: 10px 14px;
+            margin-top: 8px;
+            padding: 9px 12px;
             background: transparent;
             border: 1px solid #171717;
             color: #171717;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            letter-spacing: 1px;
-            transition: all 0.25s ease;
+            letter-spacing: 0.8px;
+            transition: all 0.2s ease;
         }
 
-        .notify-button:hover {
+        .notify-button:hover, .notify-button:active {
             background: #171717;
             color: #ffffff;
         }
@@ -541,29 +566,28 @@
         /* BRAND STORY */
         .brand-story {
             background-color: #e5e2d7;
-            padding: 85px 30px;
-            min-width: 1240px;
+            padding: 70px 24px;
         }
 
         .story-content {
-            max-width: 720px;
+            max-width: 700px;
             margin: auto;
             text-align: center;
         }
 
         .story-content h2 {
-            font-size: 46px;
+            font-size: clamp(28px, 4.2vw, 46px);
             line-height: 1.1;
-            letter-spacing: -1.5px;
+            letter-spacing: -1.2px;
             font-weight: 800;
-            margin: 18px 0;
+            margin: 16px 0;
         }
 
         .story-content p {
             max-width: 580px;
-            margin: 0 auto 28px;
+            margin: 0 auto 24px;
             color: #5c5952;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         /* SIZE GUIDE MODAL */
@@ -578,7 +602,7 @@
             justify-content: center;
             align-items: center;
             z-index: 100;
-            padding: 20px;
+            padding: 16px;
             backdrop-filter: blur(4px);
         }
 
@@ -588,34 +612,35 @@
 
         .modal-card {
             background: #f5f3ed;
-            max-width: 600px;
+            max-width: 580px;
             width: 100%;
-            padding: 35px;
+            padding: 30px 24px;
             border-radius: 2px;
             position: relative;
-            max-height: 90vh;
+            max-height: 85vh;
             overflow-y: auto;
         }
 
         .modal-close {
             position: absolute;
-            top: 18px;
-            right: 20px;
+            top: 14px;
+            right: 16px;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 300;
+            padding: 4px;
         }
 
         .size-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 13px;
+            margin: 16px 0;
+            font-size: 12px;
         }
 
         .size-table th, .size-table td {
-            padding: 10px 12px;
+            padding: 8px 10px;
             border: 1px solid #dedbd2;
             text-align: left;
         }
@@ -627,22 +652,21 @@
 
         .modal-note {
             background: #ebe7de;
-            padding: 12px 16px;
+            padding: 12px 14px;
             border-left: 3px solid #69734d;
             font-size: 12px;
-            margin-top: 15px;
+            margin-top: 14px;
             color: #444;
         }
 
         /* NEWSLETTER */
         .newsletter {
-            padding: 75px 30px;
+            padding: 60px 24px;
             text-align: center;
-            min-width: 1240px;
         }
 
         .newsletter h2 {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 8px;
@@ -650,8 +674,8 @@
 
         .newsletter p {
             color: #6b675e;
-            font-size: 14px;
-            margin-bottom: 24px;
+            font-size: 13px;
+            margin-bottom: 20px;
         }
 
         .newsletter-form {
@@ -659,12 +683,13 @@
             justify-content: center;
             max-width: 440px;
             margin: auto;
+            width: 100%;
         }
 
         .newsletter-form input {
             min-width: 0;
             flex: 1;
-            padding: 13px 16px;
+            padding: 12px 14px;
             border: 1px solid #c4bfb3;
             background: transparent;
             font-size: 13px;
@@ -676,7 +701,7 @@
         }
 
         .newsletter-form button {
-            padding: 13px 22px;
+            padding: 12px 18px;
             border: 1px solid #171717;
             background-color: #171717;
             color: #ffffff;
@@ -684,6 +709,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             transition: all 0.25s ease;
+            white-space: nowrap;
         }
 
         .newsletter-form button:hover {
@@ -695,8 +721,7 @@
         footer {
             background-color: #171717;
             color: #ffffff;
-            padding: 36px 30px;
-            min-width: 1240px;
+            padding: 34px 24px;
         }
 
         .footer-content {
@@ -705,7 +730,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
             flex-wrap: wrap;
         }
 
@@ -716,7 +741,7 @@
 
         .footer-links {
             display: flex;
-            gap: 22px;
+            gap: 18px;
             font-size: 12px;
             font-weight: 600;
         }
@@ -732,6 +757,145 @@
 
         .footer-links a:hover, .footer-links button:hover {
             color: #a4b084;
+        }
+
+        /* TABLET OPTIMIZATIONS (<= 960px) */
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+                padding: 48px 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px;
+            }
+        }
+
+        /* SMARTPHONE OPTIMIZATIONS (<= 680px) */
+        @media (max-width: 680px) {
+            nav {
+                padding: 14px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: space-between;
+                gap: 12px;
+                padding-top: 4px;
+                border-top: 1px solid #dedbd2;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 34px 16px;
+                gap: 26px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .collection {
+                padding: 24px 16px 50px;
+            }
+
+            .collection-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            /* ELEGANT 2-COLUMN PRODUCT GRID ON MOBILE */
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px 12px;
+            }
+
+            /* TOUCH SIZE SELECTOR: Always visible cleanly at bottom of photo on tap */
+            .size-selector-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: 1;
+                transform: translateY(0);
+                background: rgba(23, 23, 23, 0.88);
+                padding: 6px 8px;
+            }
+
+            .size-prompt {
+                display: none; /* Keep card clean on small screens */
+            }
+
+            .size-btn-group {
+                gap: 4px;
+            }
+
+            .size-btn {
+                flex: 1;
+                padding: 5px 0;
+                font-size: 10px;
+            }
+
+            .swatch {
+                width: 22px;
+                height: 22px; /* Friendly finger tap size */
+            }
+
+            .product-info {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+            }
+
+            .price {
+                font-size: 12px;
+                margin-top: 2px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* VERY SMALL PHONES (<= 380px) */
+        @media (max-width: 380px) {
+            .product-grid {
+                gap: 14px 10px;
+            }
+
+            .swatch {
+                width: 19px;
+                height: 19px;
+            }
         }
     </style>
 </head>
@@ -845,7 +1009,7 @@
 
                     <div class="product-info">
                         <div>
-                            <h3>Classic Henley (Plains)</h3>
+                            <h3>Classic Henley</h3>
                             <span class="sizes-available">Sizes: M, L Only</span>
                         </div>
                         <span class="price">₦25,000</span>
@@ -898,14 +1062,14 @@
 
                     <div class="product-info">
                         <div>
-                            <h3>Essential Henley (Striped)</h3>
-                            <span class="sizes-available" style="color:#a82424;">Currently unavailable</span>
+                            <h3>Striped Henley</h3>
+                            <span class="sizes-available" style="color:#a82424;">Unavailable</span>
                         </div>
                         <span class="price" style="text-decoration: line-through; color: #888;">₦27,000</span>
                     </div>
 
                     <button type="button" class="notify-button" onclick="notifyMe('Essential Striped Henley')">
-                        JOIN RESTOCK WAITLIST
+                        WAITLIST
                     </button>
                 </article>
 
@@ -924,7 +1088,7 @@
 
                     <span class="tag">LIMITED DROP</span>
 
-                    <div class="product-info" style="margin-top: 10px;">
+                    <div class="product-info">
                         <div>
                             <h3>D09 Signature Henley</h3>
                             <span class="sizes-available">Sizes: M, L Only</span>
@@ -937,22 +1101,21 @@
                 <article class="product-card coming-soon-card" data-category="trousers">
                     <div class="image-container">
                         <img src="plain_pants.jpg" alt="Tailored Plain Corporate Trousers (Coming Soon)" class="product-image" loading="lazy">
-                        <div class="coming-soon-badge">DROPPING NEXT</div>
+                        <div class="coming-soon-badge">SOON</div>
                     </div>
 
-                    <span class="tag tag-soon">COMING SOON / PREVIEW</span>
+                    <span class="tag tag-soon">PREVIEW</span>
 
                     <div class="product-info">
                         <div>
-                            <h3>Tailored Corporate Trouser</h3>
-                            <p style="color: #6b675e; font-size: 12px; margin-top: 2px;">Solid finish / Sharp ankle break</p>
-                            <span class="sizes-available">Sizes: 30, 32, 34, 36</span>
+                            <h3>Plain Trouser</h3>
+                            <span class="sizes-available">Waist: 30–36</span>
                         </div>
                         <span class="price">₦32,000</span>
                     </div>
 
                     <button type="button" class="notify-button" onclick="notifyMe('Tailored Plain Corporate Trouser')">
-                        NOTIFY ME ON DROP
+                        NOTIFY ME
                     </button>
                 </article>
 
@@ -960,22 +1123,21 @@
                 <article class="product-card coming-soon-card" data-category="trousers">
                     <div class="image-container">
                         <img src="stripped_pants.jpg" alt="Pinstripe Tailored Corporate Trousers (Coming Soon)" class="product-image" loading="lazy">
-                        <div class="coming-soon-badge">DROPPING NEXT</div>
+                        <div class="coming-soon-badge">SOON</div>
                     </div>
 
-                    <span class="tag tag-soon">COMING SOON / PREVIEW</span>
+                    <span class="tag tag-soon">PREVIEW</span>
 
                     <div class="product-info">
                         <div>
-                            <h3>Pinstripe Corporate Trouser</h3>
-                            <p style="color: #6b675e; font-size: 12px; margin-top: 2px;">Subtle pinstripe / Structured drape</p>
-                            <span class="sizes-available">Sizes: 30, 32, 34, 36</span>
+                            <h3>Pinstripe Trouser</h3>
+                            <span class="sizes-available">Waist: 30–36</span>
                         </div>
                         <span class="price">₦35,000</span>
                     </div>
 
                     <button type="button" class="notify-button" onclick="notifyMe('Pinstripe Tailored Corporate Trouser')">
-                        NOTIFY ME ON DROP
+                        NOTIFY ME
                     </button>
                 </article>
 
@@ -1024,43 +1186,43 @@
 
             <!-- HENLEY NOTICE -->
             <div class="modal-note">
-                <strong>Henley Sizing Notice:</strong> All District 09 Henleys (Plains, Short Sleeves, Branded) are exclusively stocked in <strong>Medium (M)</strong> and <strong>Large (L)</strong> for a tailored, true-to-silhouette drape.
+                <strong>Henley Sizing Notice:</strong> All District 09 Henleys (Plains, Short Sleeves, Branded) are exclusively stocked in <strong>Medium (M)</strong> and <strong>Large (L)</strong> for a tailored drape.
             </div>
 
-            <h3 style="font-size: 15px; margin-top: 25px; margin-bottom: 10px;">1. Henley Tops (M & L Only)</h3>
+            <h3 style="font-size: 14px; margin-top: 22px; margin-bottom: 8px;">1. Henley Tops (M & L Only)</h3>
             <table class="size-table">
                 <thead>
                     <tr>
                         <th>Size</th>
-                        <th>Chest (Inches)</th>
-                        <th>Shoulder (Inches)</th>
-                        <th>Body Length</th>
+                        <th>Chest</th>
+                        <th>Shoulder</th>
+                        <th>Length</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>Medium (M)</strong></td>
-                        <td>38" – 40"</td>
+                        <td>38"–40"</td>
                         <td>17.5"</td>
                         <td>28"</td>
                     </tr>
                     <tr>
                         <td><strong>Large (L)</strong></td>
-                        <td>41" – 44"</td>
+                        <td>41"–44"</td>
                         <td>18.5"</td>
                         <td>29.5"</td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3 style="font-size: 15px; margin-top: 25px; margin-bottom: 10px;">2. Corporate Trousers (Upcoming Drop)</h3>
+            <h3 style="font-size: 14px; margin-top: 22px; margin-bottom: 8px;">2. Corporate Trousers (Upcoming Drop)</h3>
             <table class="size-table">
                 <thead>
                     <tr>
                         <th>Waist Size</th>
-                        <th>Waist (Inches)</th>
+                        <th>Waist</th>
                         <th>Hips</th>
-                        <th>Inseam Length</th>
+                        <th>Inseam</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1071,7 +1233,7 @@
                 </tbody>
             </table>
 
-            <button class="button" style="width: 100%; margin-top: 15px;" onclick="closeSizeGuide()">
+            <button class="button" style="width: 100%; margin-top: 14px;" onclick="closeSizeGuide()">
                 GOT IT, CONTINUE SHOPPING
             </button>
         </div>
@@ -1099,7 +1261,7 @@
     <script>
         let bagCount = 0;
 
-        // Image preloader for seamless instant color swapping
+        // Image preloader for instant color swapping
         window.addEventListener('DOMContentLoaded', () => {
             const swatches = document.querySelectorAll('.swatch[data-img]');
             swatches.forEach(swatch => {
@@ -1202,7 +1364,6 @@
             }
         }
 
-        // Keyboard accessibility: Close modal on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.getElementById('sizeGuideModal').classList.contains('open')) {
                 closeSizeGuide();
