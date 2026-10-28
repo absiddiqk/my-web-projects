@@ -1,0 +1,545 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Giran Kitchen | Restaurant Menu</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffaf3;
+            color: #30251f;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: #241710;
+            color: white;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f4b942;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #f4b942;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 600px;
+            margin-bottom: 25px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 13px 28px;
+            background-color: #f4b942;
+            color: #241710;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: #ffd36c;
+            transform: translateY(-3px);
+        }
+
+        /* GENERAL SECTION */
+        .menu-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 65px 25px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            color: #7b351e;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: #74645a;
+        }
+
+        /* MENU GRID */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .menu-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(48, 37, 31, 0.10);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 22px rgba(48, 37, 31, 0.17);
+        }
+
+        .menu-card img {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-title h3 {
+            font-size: 19px;
+            color: #40271c;
+        }
+
+        .price {
+            color: #a34b22;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .card-content p {
+            color: #74645a;
+            font-size: 14px;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background-color: #f3e5d4;
+            padding: 60px 25px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            color: #7b351e;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            color: #59483d;
+        }
+
+        /* CONTACT */
+        .contact {
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #7b351e;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            margin-bottom: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #241710;
+            color: #e7d9c9;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        /* TABLET */
+        @media (max-width: 900px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero h1 {
+                font-size: 44px;
+            }
+
+            .navbar {
+                padding: 18px 5%;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .navbar ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .navbar a {
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .menu-section {
+                padding: 45px 18px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-card img {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">Giran Kitchen</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#mains">Main Dishes</a></li>
+            <li><a href="#sides">Sides</a></li>
+            <li><a href="#drinks">Drinks</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+        <h1>Welcome to Giran Kitchen</h1>
+
+        <p>
+            Great food, bold flavours, and unforgettable moments.
+            Your next favourite meal is waiting for you.
+        </p>
+
+        <a href="#mains" class="hero-button">Explore Our Menu</a>
+    </header>
+
+    <!-- MAIN DISHES -->
+    <main>
+        <section class="menu-section" id="mains">
+            <div class="section-heading">
+                <h2>Main Dishes</h2>
+                <p>Freshly prepared meals made with flavour in every bite.</p>
+            </div>
+
+            <div class="menu-grid">
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"
+                        alt="Chicken curry served with rice"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Chicken Curry</h3>
+                            <span class="price">₦8,500</span>
+                        </div>
+
+                        <p>Tender chicken cooked in a rich, flavourful curry sauce.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
+                        alt="A plate of fried rice"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Special Fried Rice</h3>
+                            <span class="price">₦6,000</span>
+                        </div>
+
+                        <p>Seasoned rice tossed with vegetables and our special spices.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
+                        alt="A colourful bowl of fresh food"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Chef's Special Bowl</h3>
+                            <span class="price">₦7,500</span>
+                        </div>
+
+                        <p>A satisfying combination of fresh ingredients and house seasoning.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SIDES -->
+        <section class="menu-section" id="sides">
+            <div class="section-heading">
+                <h2>Side Dishes</h2>
+                <p>The perfect additions to complete your meal.</p>
+            </div>
+
+            <div class="menu-grid">
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
+                        alt="Crispy golden fries"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Crispy Fries</h3>
+                            <span class="price">₦2,500</span>
+                        </div>
+
+                        <p>Golden potato fries, seasoned and served hot.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+                        alt="Fresh vegetable salad"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Garden Salad</h3>
+                            <span class="price">₦3,000</span>
+                        </div>
+
+                        <p>A fresh mix of crisp vegetables and a delicious dressing.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=800&q=80"
+                        alt="A serving of potato wedges"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Potato Wedges</h3>
+                            <span class="price">₦3,000</span>
+                        </div>
+
+                        <p>Thick-cut potato wedges with a crisp outside and soft centre.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- DRINKS -->
+        <section class="menu-section" id="drinks">
+            <div class="section-heading">
+                <h2>Drinks</h2>
+                <p>Cool down and refresh yourself.</p>
+            </div>
+
+            <div class="menu-grid">
+
+                <article class="menu-card">
+                    <img
+                        src="fresh.jpg"
+                        alt="A glass of fresh fruit juice"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Fresh Fruit Juice</h3>
+                            <span class="price">₦2,000</span>
+                        </div>
+
+                        <p>A refreshing fruit drink served chilled.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80"
+                        alt="A glass of iced coffee"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Iced Coffee</h3>
+                            <span class="price">₦2,500</span>
+                        </div>
+
+                        <p>Chilled coffee with a smooth, rich taste.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=800&q=80"
+                        alt="A clear glass of drinking water"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h3>Bottled Water</h3>
+                            <span class="price">₦800</span>
+                        </div>
+
+                        <p>Clean, refreshing drinking water served chilled.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ABOUT -->
+    <section class="about">
+        <h2>Our Story</h2>
+
+        <p>
+            At Giran Kitchen, we believe every meal should be memorable.
+            We bring together great ingredients, thoughtful preparation
+            and warm hospitality to create food worth coming back for.
+        </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <h2>Visit Us</h2>
+
+        <p><strong>Location:</strong> Abuja, Nigeria</p>
+        <p><strong>Opening Hours:</strong> Monday – Saturday, 9 AM – 10 PM</p>
+        <p><strong>Email:</strong> hello@girankitchen.example</p>
+
+        <p>Come hungry. Leave happy.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>Giran Kitchen</strong></p>
+        <p>Good food. Great memories.</p>
+        <p>&copy; 2026 Giran Kitchen. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+```

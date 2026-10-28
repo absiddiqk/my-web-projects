@@ -1,0 +1,775 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISTRICT 09 | Henley Essentials</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <style>
+        /* GENERAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f3ed;
+            color: #171717;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* ANNOUNCEMENT BAR */
+        .announcement {
+            background-color: #171717;
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* NAVIGATION */
+        header {
+            background-color: #f5f3ed;
+            border-bottom: 1px solid #dedbd2;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #69734d;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #69734d;
+        }
+
+        .bag {
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            max-width: 1200px;
+            margin: auto;
+            padding: 65px 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .eyebrow {
+            color: #69734d;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 82px);
+            line-height: 0.98;
+            letter-spacing: -5px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #69734d;
+        }
+
+        .hero-description {
+            max-width: 400px;
+            color: #66645d;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #171717;
+            color: white;
+            padding: 14px 25px;
+            border: 1px solid #171717;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background-color: #69734d;
+            border-color: #69734d;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 510px;
+            object-fit: cover;
+            background-color: #dedbd2;
+        }
+
+        /* SECTION HEADINGS */
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 32px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .section-heading > p:last-child {
+            color: #77746d;
+            margin-top: 8px;
+        }
+
+        /* HENLEY COLLECTION */
+        .collection {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 30px 80px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            min-width: 0;
+        }
+
+        .image-container {
+            overflow: hidden;
+            margin-bottom: 15px;
+            background-color: #e5e1d8;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.04);
+        }
+
+        .tag {
+            display: inline-block;
+            color: #69734d;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .product-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .product-info h3 {
+            font-size: 15px;
+        }
+
+        .product-info p {
+            color: #77746d;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .price {
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* BRAND STORY */
+        .brand-story {
+            background-color: #e5e3d9;
+            padding: 75px 30px;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .story-content .eyebrow {
+            margin-bottom: 0;
+        }
+
+        .story-content h2 {
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin: 18px 0;
+        }
+
+        .story-content p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            color: #66645d;
+        }
+
+        .text-link {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #171717;
+            padding-bottom: 5px;
+        }
+
+        .text-link:hover {
+            color: #69734d;
+            border-color: #69734d;
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            padding: 65px 30px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #77746d;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 450px;
+            margin: auto;
+        }
+
+        .newsletter-form input {
+            min-width: 0;
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #c8c4ba;
+            background: transparent;
+        }
+
+        .newsletter-form input:focus {
+            outline: 2px solid #69734d;
+            outline-offset: 2px;
+        }
+
+        .newsletter-form button {
+            padding: 13px 18px;
+            border: 1px solid #171717;
+            background-color: #171717;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #69734d;
+            border-color: #69734d;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #171717;
+            color: white;
+            padding: 35px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-content > p {
+            color: #aaa79f;
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: #b8c39a;
+        }
+
+        /* CENTER FOURTH PRODUCT ON DESKTOP */
+        @media (min-width: 801px) {
+            .product-card:nth-child(4) {
+                grid-column: 2;
+            }
+        }
+
+        /* TABLET */
+        @media (max-width: 800px) {
+            nav {
+                gap: 18px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero {
+                gap: 30px;
+                padding-top: 45px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero-image {
+                height: 400px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .product-image {
+                height: 320px;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 550px) {
+            .announcement {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            nav {
+                padding: 15px 18px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .logo span {
+                font-size: 11px;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 40px 18px;
+                gap: 30px;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+            }
+
+            .hero-image {
+                height: 400px;
+            }
+
+            .collection {
+                padding: 35px 18px 55px;
+            }
+
+            .section-heading h2 {
+                font-size: 27px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px 12px;
+            }
+
+            .product-image {
+                height: 400px;
+            }
+
+            .product-info {
+                display: block;
+            }
+
+            .price {
+                display: block;
+                margin-top: 5px;
+            }
+
+            .brand-story {
+                padding: 55px 20px;
+            }
+
+            .newsletter {
+                padding: 50px 18px;
+            }
+
+            .newsletter h2 {
+                font-size: 24px;
+            }
+
+            .newsletter-form button {
+                padding: 12px;
+            }
+
+            footer {
+                padding: 30px 18px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* SMALL PHONES */
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .product-image {
+                height: 190px;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+            }
+
+            .product-info p {
+                font-size: 12px;
+            }
+
+            .price {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement">
+        DISTRICT 09 — THE HENLEY DROP IS HERE
+    </div>
+
+    <!-- HEADER AND NAVIGATION -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                DISTRICT 09 <span>COLLECTION</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#collection">SHOP</a></li>
+                <li><a href="#collection">COLLECTIONS</a></li>
+                <li><a href="#about">ABOUT</a></li>
+            </ul>
+
+            <a href="#collection" class="bag">BAG (0)</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="eyebrow">DISTRICT 09 / EST. 2026</p>
+
+                <h1>
+                    WEAR YOUR<br>
+                    OWN <span>STORY.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Everyday essentials. Considered fits.
+                    Made to move with you. Discover the District 09
+                    Henley collection, designed for effortless
+                    style and everyday confidence.
+                </p>
+
+                <a href="#collection" class="button">
+                    SHOP THE HENLEY DROP &rarr;
+                </a>
+            </div>
+
+            <div>
+                <img
+                    src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
+                    alt="Contemporary casual fashion collection"
+                    class="hero-image"
+                >
+            </div>
+        </section>
+
+        <!-- HENLEY COLLECTION -->
+        <section class="collection" id="collection">
+            <div class="section-heading">
+                <p class="eyebrow">DISTRICT 09 / NEW ARRIVALS</p>
+                <h2>THE HENLEY DROP</h2>
+                <p>Timeless fits. Clean details. Everyday confidence.</p>
+            </div>
+
+            <div class="product-grid">
+
+                <!-- PRODUCT ONE -->
+                <article class="product-card">
+                    <div class="image-container">
+                        <img
+                            src="plain_black.jpg"
+                            alt="Classic casual shirt in a dark color"
+                            class="product-image"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <span class="tag">BESTSELLER</span>
+
+                    <div class="product-info">
+                        <div>
+                            <h3>Classic Henley</h3>
+                            <p>Plains</p>
+                        </div>
+                        <span class="price">₦25,000</span>
+                    </div>
+                </article>
+
+                <!-- PRODUCT TWO -->
+                <article class="product-card">
+                    <div class="image-container">
+                        <img
+                            src="stipped_henly.jpg"
+                            alt="Minimal everyday casual top"
+                            class="product-image"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <span class="tag">NEW ARRIVAL</span>
+
+                    <div class="product-info">
+                        <div>
+                            <h3>Essential Henley</h3>
+                            <p>Striped design</p>
+                        </div>
+                        <span class="price">₦27,000</span>
+                    </div>
+                </article>
+
+                <!-- PRODUCT THREE -->
+                <article class="product-card">
+                    <div class="image-container">
+                        <img
+                            src="branded.jpg"
+                            alt="Modern fitted casual shirt"
+                            class="product-image"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <span class="tag">LIMITED DROP</span>
+
+                    <div class="product-info">
+                        <div>
+                            <h3>D09 Signature Henley</h3>
+                            <p>Branded Henley</p>
+                        </div>
+                        <span class="price">₦25,000</span>
+                    </div>
+                </article>
+
+                <!-- PRODUCT FOUR -->
+                <article class="product-card">
+                    <div class="image-container">
+                        <img
+                            src="short_sleeve.jpg"
+                            alt="District 09 short sleeve Henley shirt"
+                            class="product-image"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <span class="tag">NEW ARRIVAL</span>
+
+                    <div class="product-info">
+                        <div>
+                            <h3>Short Sleeve Henley</h3>
+                            <p>Classic short sleeve fit</p>
+                        </div>
+                        <span class="price">₦25,000</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- BRAND STORY -->
+        <section class="brand-story" id="about">
+            <div class="story-content">
+                <span class="eyebrow">THE GIRAN PHILOSOPHY</span>
+
+                <h2>
+                    SIMPLICITY.<br>
+                    WITH CHARACTER.
+                </h2>
+
+                <p>
+                    DISTRICT 09 is built around timeless
+                    essentials that bring comfort and confidence
+                    together. From everyday Henleys to clean,
+                    versatile fits, every piece is designed to
+                    make personal style effortless.
+                </p>
+
+                <a href="#collection" class="text-link">
+                    SHOP THE HENLEY DROP &rarr;
+                </a>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter">
+            <h2>JOIN THE DISTRICT 09 LIST.</h2>
+
+            <p>
+                Be first to discover new drops, restocks,
+                and exclusive releases.
+            </p>
+
+            <form class="newsletter-form" action="#" method="get">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Your email address"
+                    aria-label="Your email address"
+                    required
+                >
+                <button type="submit">SIGN UP</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <a href="#home" class="logo">
+                DISTRICT 09 <span>COLLECTION</span>
+            </a>
+
+            <p>
+                &copy; 2026 DISTRICT 09 COLLECTION. All rights reserved.
+            </p>
+
+            <div class="footer-links">
+                <a href="#collection">SHOP</a>
+                <a href="#about">ABOUT</a>
+                <a href="#home">BACK TO TOP &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Explore Anthony Edwards' player profile, basketball career, statistics and signature Adidas basketball shoes.">
+    <meta name="author" content="Giran Coded">
+
+    <title>Anthony Edwards | Player Profile</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/jpeg" href="ant_logo.jpg">
+
+    <style>
+        /* GENERAL STYLING */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111820;
+            color: #F5F7F8;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            color: #78BE20;
+        }
+
+        a:focus-visible {
+            outline: 2px solid #78BE20;
+            outline-offset: 4px;
+        }
+
+        h2, h3 {
+            color: #78BE20;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 16px 6%;
+            background-color: rgba(17, 24, 32, 0.97);
+            border-bottom: 2px solid #78BE20;
+        }
+
+        .logo {
+            color: #78BE20;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 22px;
+            list-style: none;
+        }
+
+        .navbar a {
+            color: #F5F7F8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #78BE20;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(
+                135deg,
+                #17232D,
+                #263238
+            );
+            border-bottom: 1px solid #34434D;
+        }
+
+        .hero h1 {
+            color: #78BE20;
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #B8C5CC;
+            letter-spacing: 1px;
+        }
+
+        .hero .tagline {
+            max-width: 650px;
+            margin: 12px auto 0;
+            letter-spacing: normal;
+        }
+
+        /* MAIN LAYOUT */
+        main {
+            width: min(1100px, 100%);
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 35px 5px;
+            scroll-margin-top: 90px;
+        }
+
+        section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            color: #B8C5CC;
+            margin-bottom: 20px;
+        }
+
+        /* PLAYER PROFILE */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+            gap: 30px;
+            align-items: center;
+        }
+
+        .player-image {
+            display: block;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            border: 2px solid #78BE20;
+            border-radius: 10px;
+            margin: auto;
+        }
+
+        .profile-text {
+            background-color: #1C2732;
+            border: 1px solid #34434D;
+            border-left: 4px solid #78BE20;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .profile-text p {
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #26382A;
+            color: #B8E986;
+            border-radius: 20px;
+            padding: 5px 12px;
+            margin: 4px 5px 4px 0;
+            font-size: 13px;
+        }
+
+        /* PLAYER STATISTICS */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1C2732;
+        }
+
+        .stats-table caption {
+            text-align: left;
+            padding: 12px 0;
+            color: #B8C5CC;
+        }
+
+        .stats-table th,
+        .stats-table td {
+            text-align: left;
+            padding: 14px;
+            border: 1px solid #34434D;
+        }
+
+        .stats-table th {
+            background-color: #263238;
+            color: #78BE20;
+        }
+
+        .stats-table tbody tr:nth-child(even) {
+            background-color: #202B33;
+        }
+
+        .stats-table tbody tr:hover {
+            background-color: #2A3A42;
+        }
+
+        /* CAREER HIGHLIGHTS */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .highlight-card {
+            background-color: #1C2732;
+            border: 1px solid #34434D;
+            border-radius: 10px;
+            padding: 22px;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            border-color: #78BE20;
+        }
+
+        .highlight-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .highlight-card p {
+            color: #B8C5CC;
+        }
+
+        /* SIGNATURE SHOES */
+        .shoe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .shoe-card {
+            overflow: hidden;
+            background-color: #1C2732;
+            border: 1px solid #34434D;
+            border-radius: 10px;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .shoe-card:hover {
+            transform: translateY(-5px);
+            border-color: #78BE20;
+        }
+
+        .shoe-card img {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .shoe-content {
+            padding: 20px;
+        }
+
+        .shoe-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .shoe-content p {
+            color: #B8C5CC;
+            margin-bottom: 15px;
+        }
+
+        .shoe-link {
+            display: inline-block;
+            padding: 9px 14px;
+            background-color: #78BE20;
+            color: #111820;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.25s;
+        }
+
+        .shoe-link:hover {
+            background-color: #9AE344;
+        }
+
+        /* QUOTE */
+        .quote {
+            margin: 15px 0 35px;
+            padding: 25px;
+            text-align: center;
+            background-color: #1C2732;
+            border-left: 4px solid #78BE20;
+            border-radius: 8px;
+            color: #D7E1E5;
+            font-size: 20px;
+            font-style: italic;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: #0B1117;
+            border-top: 2px solid #78BE20;
+            color: #B8C5CC;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            text-decoration: none;
+        }
+
+        /* TABLET */
+        @media (max-width: 800px) {
+            .navbar {
+                justify-content: center;
+            }
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-grid,
+            .shoe-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 550px) {
+            .navbar {
+                padding: 14px 10px;
+            }
+
+            .navbar ul {
+                justify-content: center;
+                gap: 10px 15px;
+            }
+
+            .navbar a {
+                font-size: 13px;
+            }
+
+            main {
+                padding: 12px;
+            }
+
+            section {
+                padding: 25px 5px;
+            }
+
+            section h2 {
+                font-size: 24px;
+            }
+
+            .player-image {
+                width: 100%;
+                max-width: 300px;
+                height: 300px;
+            }
+
+            .highlight-grid,
+            .shoe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-table th,
+            .stats-table td {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .quote {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">ANT-MAN // PLAYER PROFILE</div>
+
+        <ul>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#stats">Statistics</a></li>
+            <li><a href="#highlights">Highlights</a></li>
+            <li><a href="#shoes">Signature Shoes</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>ANTHONY EDWARDS</h1>
+        <p>NBA PLAYER PROFILE</p>
+
+        <p class="tagline">
+            Explosive athleticism, fearless scoring and the rise
+            of one of basketball's most exciting players.
+        </p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PROFILE -->
+        <section id="profile">
+            <h2>Player Profile</h2>
+
+            <div class="profile-layout">
+
+                <img
+                    src="AE1_pic.jpg"
+                    alt="Anthony Edwards basketball player"
+                    class="player-image"
+                    loading="lazy"
+                >
+
+                <div class="profile-text">
+                    <h3>Who Is Anthony Edwards?</h3>
+
+                    <p>
+                        Anthony Edwards is an American professional
+                        basketball player known for his explosive
+                        athleticism, scoring ability and aggressive
+                        playing style.
+                    </p>
+
+                    <p>
+                        Nicknamed "Ant-Man," Edwards plays shooting guard
+                        and has become a leading figure for the Minnesota
+                        Timberwolves in the NBA.
+                    </p>
+
+                    <p>
+                        His game combines powerful drives to the basket,
+                        three-point shooting, transition scoring and
+                        highlight-reel dunks.
+                    </p>
+
+                    <span class="tag">NBA</span>
+                    <span class="tag">Minnesota Timberwolves</span>
+                    <span class="tag">Shooting Guard</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PLAYER INFORMATION -->
+        <section id="stats">
+            <h2>Player Information</h2>
+
+            <p class="section-intro">
+                A quick overview of Anthony Edwards' basketball profile.
+            </p>
+
+            <div class="table-wrapper">
+                <table class="stats-table">
+                    <caption>Player details</caption>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Full Name</th>
+                            <td>Anthony DeVante Edwards</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Nickname</th>
+                            <td>Ant-Man</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Date of Birth</th>
+                            <td>August 5, 2001</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Nationality</th>
+                            <td>American</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Position</th>
+                            <td>Shooting Guard</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">NBA Team</th>
+                            <td>Minnesota Timberwolves</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">College</th>
+                            <td>University of Georgia</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">NBA Draft</th>
+                            <td>2020 — First overall pick</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="section-intro">
+                These are player-profile details, not live season statistics.
+                Verify current statistics from official NBA sources before publishing.
+            </p>
+        </section>
+
+        <!-- CAREER HIGHLIGHTS -->
+        <section id="highlights">
+            <h2>Playing Style and Highlights</h2>
+
+            <p class="section-intro">
+                Three major strengths that make Edwards exciting to watch.
+            </p>
+
+            <div class="highlight-grid">
+
+                <article class="highlight-card">
+                    <h3>Explosive Athleticism</h3>
+
+                    <p>
+                        Known for powerful drives, quick acceleration
+                        and high-flying dunks that energize the crowd.
+                    </p>
+                </article>
+
+                <article class="highlight-card">
+                    <h3>Scoring Ability</h3>
+
+                    <p>
+                        Uses three-point shooting, pull-up jumpers
+                        and drives to create scoring opportunities.
+                    </p>
+                </article>
+
+                <article class="highlight-card">
+                    <h3>Competitive Mindset</h3>
+
+                    <p>
+                        Plays with confidence and aggression while
+                        taking on important offensive responsibilities.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SIGNATURE SHOES -->
+        <section id="shoes">
+            <h2>Anthony Edwards Signature Shoes</h2>
+
+            <p class="section-intro">
+                Explore the Adidas Anthony Edwards signature shoe line.
+                Product images and retailer listings may change.
+            </p>
+
+            <div class="shoe-grid">
+
+                <!-- AE 1 -->
+                <article class="shoe-card">
+                    <img
+                        src="ant1.jpg"
+                        alt="Adidas Anthony Edwards 1 basketball shoe"
+                        loading="lazy"
+                    >
+
+                    <div class="shoe-content">
+                        <h3>Adidas AE 1</h3>
+
+                        <p>
+                            The first signature shoe in Anthony Edwards'
+                            line, featuring a bold design and
+                            basketball-focused construction.
+                        </p>
+
+                        <a
+                            class="shoe-link"
+                            href="https://www.adidas.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit Adidas
+                        </a>
+                    </div>
+                </article>
+
+                <!-- AE 2 -->
+                <article class="shoe-card">
+                    <img
+                        src="shopping.jpg"
+                        alt="Adidas Anthony Edwards 2 basketball shoe"
+                        loading="lazy"
+                    >
+
+                    <div class="shoe-content">
+                        <h3>Adidas AE 2</h3>
+
+                        <p>
+                            The second signature model in Anthony Edwards'
+                            line, continuing the series with a distinctive
+                            design for basketball.
+                        </p>
+
+                        <a
+                            class="shoe-link"
+                            href="https://www.adidas.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit Adidas
+                        </a>
+                    </div>
+                </article>
+
+                <!-- AE 3 -->
+                <article class="shoe-card">
+                    <img
+                        src="ant3.jpg"
+                        alt="Adidas Anthony Edwards 3 basketball shoe"
+                        loading="lazy"
+                    >
+
+                    <div class="shoe-content">
+                        <h3>Adidas AE 3</h3>
+
+                        <p>
+                            The third model in the signature line,
+                            with a court-ready design for players
+                            who value support and performance.
+                        </p>
+
+                        <a
+                            class="shoe-link"
+                            href="https://www.adidas.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit Adidas
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- QUOTE -->
+        <blockquote class="quote">
+            "Play with confidence. Compete every possession."
+        </blockquote>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>GIRAN CODED | BASKETBALL PLAYER PROFILE</strong></p>
+        <p>A fan-made profile celebrating Anthony Edwards.</p>
+        <p>
+            Player and brand names belong to their respective owners.
+        </p>
+        <p><a href="#profile">Back to top</a></p>
+        <p>&copy; 2026 Giran Coded</p>
+    </footer>
+
+</body>
+</html>
+```
