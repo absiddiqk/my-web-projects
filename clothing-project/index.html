@@ -301,7 +301,7 @@
             background-color: #69734d;
         }
 
-        /* PRODUCT GRID: 3 cols on desktop, 2 cols on mobile */
+        /* PRODUCT GRID */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -345,21 +345,27 @@
             transform: scale(1.03);
         }
 
-        /* PANTS FULL VIEW & INSET PADDING */
+        /* TROUSERS CONTAINER: MATCHING STUDIO BACKGROUND & FULL FIT */
         .coming-soon-card .image-container {
-            background-color: #ffffff;
+            background-color: #d9e2e8;
+            border: 1px solid #c9d3d9;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+.coming-soon-card .product-image {
+    object-fit: cover !important;
+    object-position: center center;
+    width: 100%;
+    height: 100%;          /* Ensures it fills the container's height */
+    margin: 100px 0;
+    padding: 0;            /* Removed so the image reaches the edges */
+    transform: none;
+}
+        
 
-        .coming-soon-card .product-image {
-            object-fit: contain;
-            height: 100%;
-            width: 100%;
-            padding: 22px 14px;
-            transform: scale(0.85);
-            transform-origin: center center;
+        .coming-soon-card:hover .product-image {
+            transform: scale(1.03);
         }
 
         /* QUICK SIZE SELECTOR OVERLAY */
@@ -820,7 +826,7 @@
                 gap: 18px 12px;
             }
 
-            /* TOUCH SIZE SELECTOR: Always visible cleanly at bottom of photo on tap */
+            /* TOUCH SIZE SELECTOR */
             .size-selector-overlay {
                 position: absolute;
                 bottom: 0;
@@ -833,7 +839,7 @@
             }
 
             .size-prompt {
-                display: none; /* Keep card clean on small screens */
+                display: none;
             }
 
             .size-btn-group {
@@ -848,7 +854,7 @@
 
             .swatch {
                 width: 22px;
-                height: 22px; /* Friendly finger tap size */
+                height: 22px;
             }
 
             .product-info {
@@ -904,7 +910,7 @@
 
     <!-- ANNOUNCEMENT BAR -->
     <div class="announcement">
-        DISTRICT 09 — HENLEY ESSENTIALS LIVE | TAILORED TROUSERS DROPPING SOON
+        WELCOME TO DISTRICT 09 
     </div>
 
     <!-- HEADER AND NAVIGATION -->
@@ -933,11 +939,10 @@
         <!-- HERO SECTION -->
         <section class="hero" id="home">
             <div class="hero-content">
-                <p class="eyebrow">DISTRICT 09 / ESSENTIALS & TAILORING</p>
+                <p class="eyebrow">DISTRICT 09 / ESSENTIALS</p>
 
                 <h1>
                     ELEVATED ESSENTIALS.<br>
-                    SHARP <span>TAILORING.</span>
                 </h1>
 
                 <p class="hero-description">
@@ -1088,7 +1093,7 @@
 
                     <span class="tag">LIMITED DROP</span>
 
-                    <div class="product-info">
+                    <div class="product-info" style="margin-top: 10px;">
                         <div>
                             <h3>D09 Signature Henley</h3>
                             <span class="sizes-available">Sizes: M, L Only</span>
@@ -1111,7 +1116,7 @@
                             <h3>Plain Trouser</h3>
                             <span class="sizes-available">Waist: 30–36</span>
                         </div>
-                        <span class="price">₦32,000</span>
+                        <span class="price">UNAVAILABLE</span>
                     </div>
 
                     <button type="button" class="notify-button" onclick="notifyMe('Tailored Plain Corporate Trouser')">
@@ -1133,7 +1138,7 @@
                             <h3>Pinstripe Trouser</h3>
                             <span class="sizes-available">Waist: 30–36</span>
                         </div>
-                        <span class="price">₦35,000</span>
+                        <span class="price">UNAVAILABLE</span>
                     </div>
 
                     <button type="button" class="notify-button" onclick="notifyMe('Pinstripe Tailored Corporate Trouser')">
@@ -1155,7 +1160,7 @@
                 </h2>
 
                 <p>
-                    DISTRICT 09 bridges the transition from laid-back weekend luxury to boardroom confidence. With precision-dyed essentials in Black, White, Sky Blue, Brown, and Grey, every piece is built to be worn, paired, and lived in.
+                    DISTRICT 09 bridges the transition from laid-back weekend luxury to boardroom confidence. With precision-dyed essentials in every piece is built to be worn, paired, and lived in.
                 </p>
 
                 <a href="#collection" class="button">
