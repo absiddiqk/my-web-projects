@@ -419,7 +419,7 @@
         }
 
         /* MOBILE */
-        @media (max-width: 400px) {
+        @media (max-width: 600px) {
             .announcement {
                 font-size: 10px;
                 letter-spacing: 1px;
@@ -477,9 +477,14 @@
                 gap: 20px 12px;
             }
 
-            .product-image {
-                height: 400px;
-            }
+           
+.product-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    transition: transform 0.4s;
+}
 
             .product-info {
                 display: block;
