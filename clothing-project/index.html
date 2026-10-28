@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport locked to desktop width so mobile phones render the laptop view -->
+    <meta name="viewport" content="width=1240, user-scalable=yes">
     <title>DISTRICT 09 | Contemporary Menswear & Tailoring</title>
     <link rel="icon" href="favicon.png" type="image/png">
 
@@ -21,6 +22,7 @@
 
         html {
             scroll-behavior: smooth;
+            min-width: 1240px;
         }
 
         body {
@@ -29,6 +31,11 @@
             color: #171717;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            min-width: 1240px;
+        }
+
+        body.modal-open {
+            overflow: hidden;
         }
 
         a {
@@ -58,6 +65,7 @@
             font-size: 11px;
             letter-spacing: 2px;
             font-weight: 600;
+            min-width: 1240px;
         }
 
         /* NAVIGATION */
@@ -67,6 +75,7 @@
             position: sticky;
             top: 0;
             z-index: 20;
+            min-width: 1240px;
         }
 
         nav {
@@ -160,7 +169,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(44px, 5.5vw, 76px);
+            font-size: 64px;
             line-height: 0.98;
             letter-spacing: -2.5px;
             font-weight: 800;
@@ -288,7 +297,7 @@
             background-color: #69734d;
         }
 
-        /* PRODUCT GRID */
+        /* PRODUCT GRID (Consistently 3 columns) */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -344,6 +353,7 @@
             opacity: 0;
             transform: translateY(100%);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 6;
         }
 
         .product-card:not(.sold-out):not(.coming-soon-card):hover .size-selector-overlay {
@@ -405,8 +415,8 @@
         }
 
         .swatch {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             border: 1px solid #dedbd2;
             cursor: pointer;
@@ -459,12 +469,6 @@
             font-size: 15px;
             font-weight: 700;
             letter-spacing: -0.2px;
-        }
-
-        .product-info p {
-            color: #6b675e;
-            font-size: 12px;
-            margin-top: 2px;
         }
 
         .sizes-available {
@@ -538,6 +542,7 @@
         .brand-story {
             background-color: #e5e2d7;
             padding: 85px 30px;
+            min-width: 1240px;
         }
 
         .story-content {
@@ -547,7 +552,7 @@
         }
 
         .story-content h2 {
-            font-size: clamp(32px, 4.5vw, 50px);
+            font-size: 46px;
             line-height: 1.1;
             letter-spacing: -1.5px;
             font-weight: 800;
@@ -633,6 +638,7 @@
         .newsletter {
             padding: 75px 30px;
             text-align: center;
+            min-width: 1240px;
         }
 
         .newsletter h2 {
@@ -690,6 +696,7 @@
             background-color: #171717;
             color: #ffffff;
             padding: 36px 30px;
+            min-width: 1240px;
         }
 
         .footer-content {
@@ -725,81 +732,6 @@
 
         .footer-links a:hover, .footer-links button:hover {
             color: #a4b084;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 960px) {
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                gap: 35px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 680px) {
-            nav {
-                padding: 16px 20px;
-                flex-wrap: wrap;
-                gap: 14px;
-            }
-
-            .nav-links {
-                order: 3;
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 40px 20px;
-            }
-
-            .hero-image-wrap {
-                aspect-ratio: 1 / 1;
-            }
-
-            .collection {
-                padding: 30px 20px 60px;
-            }
-
-            .collection-top {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .size-selector-overlay {
-                position: static;
-                opacity: 1;
-                transform: none;
-                background: transparent;
-                padding: 8px 0 0;
-            }
-
-            .size-prompt {
-                display: none;
-            }
-
-            .size-btn {
-                background: #171717;
-                flex: 1;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                justify-content: center;
-            }
         }
     </style>
 </head>
@@ -885,7 +817,7 @@
 
             <div class="product-grid">
 
-                <!-- 1. CLASSIC LONG SLEEVE HENLEY (PLAIN COLOR SWATCHES WITH DYNAMIC IMAGES) -->
+                <!-- 1. CLASSIC LONG SLEEVE HENLEY (PLAIN COLOR SWATCHES) -->
                 <article class="product-card" data-category="henley" id="card-classic-plain">
                     <div class="image-container">
                         <img src="plain_black.jpg" alt="Classic Henley Plain Black" class="product-image" loading="lazy">
@@ -900,39 +832,27 @@
 
                     <span class="tag">BESTSELLER</span>
 
-                    <!-- COLOR PICKER: 5 COLORWAYS WITH data-img -->
                     <div class="color-selector">
                         <span class="color-label">Color: <strong class="current-color">Black</strong></span>
                         <div class="color-swatches">
-                            <button type="button" class="swatch swatch-black active" title="Black" 
-                                    data-img="plain_black.jpg" 
-                                    onclick="selectColor(this, 'card-classic-plain', 'Black')"></button>
-                            <button type="button" class="swatch swatch-white" title="White" 
-                                    data-img="plain_white.jpg" 
-                                    onclick="selectColor(this, 'card-classic-plain', 'White')"></button>
-                            <button type="button" class="swatch swatch-skyblue" title="Sky Blue" 
-                                    data-img="plain_skyblue.jpg" 
-                                    onclick="selectColor(this, 'card-classic-plain', 'Sky Blue')"></button>
-                            <button type="button" class="swatch swatch-brown" title="Brown" 
-                                    data-img="plain_brown.jpg" 
-                                    onclick="selectColor(this, 'card-classic-plain', 'Brown')"></button>
-                            <button type="button" class="swatch swatch-grey" title="Grey" 
-                                    data-img="plain_grey.jpg" 
-                                    onclick="selectColor(this, 'card-classic-plain', 'Grey')"></button>
+                            <button type="button" class="swatch swatch-black active" aria-label="Select Black" title="Black" data-img="plain_black.jpg" onclick="selectColor(this, 'card-classic-plain', 'Black')"></button>
+                            <button type="button" class="swatch swatch-white" aria-label="Select White" title="White" data-img="plain_white.jpg" onclick="selectColor(this, 'card-classic-plain', 'White')"></button>
+                            <button type="button" class="swatch swatch-skyblue" aria-label="Select Sky Blue" title="Sky Blue" data-img="plain_skyblue.jpg" onclick="selectColor(this, 'card-classic-plain', 'Sky Blue')"></button>
+                            <button type="button" class="swatch swatch-brown" aria-label="Select Brown" title="Brown" data-img="plain_brown.jpg" onclick="selectColor(this, 'card-classic-plain', 'Brown')"></button>
+                            <button type="button" class="swatch swatch-grey" aria-label="Select Grey" title="Grey" data-img="plain_grey.jpg" onclick="selectColor(this, 'card-classic-plain', 'Grey')"></button>
                         </div>
                     </div>
 
                     <div class="product-info">
                         <div>
                             <h3>Classic Henley (Plains)</h3>
-                            <p>Premium weighted rib knit</p>
                             <span class="sizes-available">Sizes: M, L Only</span>
                         </div>
                         <span class="price">₦25,000</span>
                     </div>
                 </article>
 
-                <!-- 2. SHORT SLEEVE HENLEY (PLAIN COLOR SWATCHES WITH DYNAMIC IMAGES) -->
+                <!-- 2. SHORT SLEEVE HENLEY (PLAIN COLOR SWATCHES) -->
                 <article class="product-card" data-category="henley" id="card-short-sleeve">
                     <div class="image-container">
                         <img src="short_sleeve_black.jpg" alt="Short Sleeve Henley Black" class="product-image" loading="lazy">
@@ -947,32 +867,20 @@
 
                     <span class="tag">SUMMER ESSENTIAL</span>
 
-                    <!-- COLOR PICKER: 5 COLORWAYS WITH data-img -->
                     <div class="color-selector">
                         <span class="color-label">Color: <strong class="current-color">Black</strong></span>
                         <div class="color-swatches">
-                            <button type="button" class="swatch swatch-black active" title="Black" 
-                                    data-img="short_sleeve_black.jpg" 
-                                    onclick="selectColor(this, 'card-short-sleeve', 'Black')"></button>
-                            <button type="button" class="swatch swatch-white" title="White" 
-                                    data-img="short_sleeve_white.jpg" 
-                                    onclick="selectColor(this, 'card-short-sleeve', 'White')"></button>
-                            <button type="button" class="swatch swatch-skyblue" title="Sky Blue" 
-                                    data-img="short_sleeve_skyblue.jpg" 
-                                    onclick="selectColor(this, 'card-short-sleeve', 'Sky Blue')"></button>
-                            <button type="button" class="swatch swatch-brown" title="Brown" 
-                                    data-img="short_sleeve_brown.jpg" 
-                                    onclick="selectColor(this, 'card-short-sleeve', 'Brown')"></button>
-                            <button type="button" class="swatch swatch-grey" title="Grey" 
-                                    data-img="short_sleeve_grey.jpg" 
-                                    onclick="selectColor(this, 'card-short-sleeve', 'Grey')"></button>
+                            <button type="button" class="swatch swatch-black active" aria-label="Select Black" title="Black" data-img="short_sleeve_black.jpg" onclick="selectColor(this, 'card-short-sleeve', 'Black')"></button>
+                            <button type="button" class="swatch swatch-white" aria-label="Select White" title="White" data-img="short_sleeve_white.jpg" onclick="selectColor(this, 'card-short-sleeve', 'White')"></button>
+                            <button type="button" class="swatch swatch-skyblue" aria-label="Select Sky Blue" title="Sky Blue" data-img="short_sleeve_skyblue.jpg" onclick="selectColor(this, 'card-short-sleeve', 'Sky Blue')"></button>
+                            <button type="button" class="swatch swatch-brown" aria-label="Select Brown" title="Brown" data-img="short_sleeve_brown.jpg" onclick="selectColor(this, 'card-short-sleeve', 'Brown')"></button>
+                            <button type="button" class="swatch swatch-grey" aria-label="Select Grey" title="Grey" data-img="short_sleeve_grey.jpg" onclick="selectColor(this, 'card-short-sleeve', 'Grey')"></button>
                         </div>
                     </div>
 
                     <div class="product-info">
                         <div>
                             <h3>Short Sleeve Henley</h3>
-                            <p>Breathable everyday cut</p>
                             <span class="sizes-available">Sizes: M, L Only</span>
                         </div>
                         <span class="price">₦25,000</span>
@@ -991,7 +899,6 @@
                     <div class="product-info">
                         <div>
                             <h3>Essential Henley (Striped)</h3>
-                            <p>Signature horizontal micro-stripe</p>
                             <span class="sizes-available" style="color:#a82424;">Currently unavailable</span>
                         </div>
                         <span class="price" style="text-decoration: line-through; color: #888;">₦27,000</span>
@@ -1020,7 +927,6 @@
                     <div class="product-info" style="margin-top: 10px;">
                         <div>
                             <h3>D09 Signature Henley</h3>
-                            <p>Branded Earth Brown Tone</p>
                             <span class="sizes-available">Sizes: M, L Only</span>
                         </div>
                         <span class="price">₦25,000</span>
@@ -1030,7 +936,7 @@
                 <!-- 5. CORPORATE TROUSER: PLAIN (COMING SOON) -->
                 <article class="product-card coming-soon-card" data-category="trousers">
                     <div class="image-container">
-                        <img src="plain_trouser.jpg" alt="Tailored Plain Corporate Trousers (Coming Soon)" class="product-image" loading="lazy">
+                        <img src="plain_pants.jpg" alt="Tailored Plain Corporate Trousers (Coming Soon)" class="product-image" loading="lazy">
                         <div class="coming-soon-badge">DROPPING NEXT</div>
                     </div>
 
@@ -1039,7 +945,7 @@
                     <div class="product-info">
                         <div>
                             <h3>Tailored Corporate Trouser</h3>
-                            <p>Solid finish / Sharp ankle break</p>
+                            <p style="color: #6b675e; font-size: 12px; margin-top: 2px;">Solid finish / Sharp ankle break</p>
                             <span class="sizes-available">Sizes: 30, 32, 34, 36</span>
                         </div>
                         <span class="price">₦32,000</span>
@@ -1053,7 +959,7 @@
                 <!-- 6. CORPORATE TROUSER: STRIPED (COMING SOON) -->
                 <article class="product-card coming-soon-card" data-category="trousers">
                     <div class="image-container">
-                        <img src="striped_trouser.jpg" alt="Pinstripe Tailored Corporate Trousers (Coming Soon)" class="product-image" loading="lazy">
+                        <img src="stripped_pants.jpg" alt="Pinstripe Tailored Corporate Trousers (Coming Soon)" class="product-image" loading="lazy">
                         <div class="coming-soon-badge">DROPPING NEXT</div>
                     </div>
 
@@ -1062,7 +968,7 @@
                     <div class="product-info">
                         <div>
                             <h3>Pinstripe Corporate Trouser</h3>
-                            <p>Subtle pinstripe / Structured drape</p>
+                            <p style="color: #6b675e; font-size: 12px; margin-top: 2px;">Subtle pinstripe / Structured drape</p>
                             <span class="sizes-available">Sizes: 30, 32, 34, 36</span>
                         </div>
                         <span class="price">₦35,000</span>
@@ -1110,11 +1016,11 @@
     </main>
 
     <!-- SIZE GUIDE MODAL -->
-    <div class="modal-overlay" id="sizeGuideModal" onclick="closeOnBackdrop(event)">
+    <div class="modal-overlay" id="sizeGuideModal" onclick="closeOnBackdrop(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-card">
-            <button class="modal-close" onclick="closeSizeGuide()">&times;</button>
+            <button class="modal-close" onclick="closeSizeGuide()" aria-label="Close modal">&times;</button>
             <p class="eyebrow">FIT & MEASUREMENTS</p>
-            <h2>DISTRICT 09 SIZE GUIDE</h2>
+            <h2 id="modalTitle">DISTRICT 09 SIZE GUIDE</h2>
 
             <!-- HENLEY NOTICE -->
             <div class="modal-note">
@@ -1193,6 +1099,18 @@
     <script>
         let bagCount = 0;
 
+        // Image preloader for seamless instant color swapping
+        window.addEventListener('DOMContentLoaded', () => {
+            const swatches = document.querySelectorAll('.swatch[data-img]');
+            swatches.forEach(swatch => {
+                const imgPath = swatch.getAttribute('data-img');
+                if (imgPath) {
+                    const img = new Image();
+                    img.src = imgPath;
+                }
+            });
+        });
+
         // Color selection handler with photo switching
         function selectColor(btn, cardId, colorName) {
             const card = document.getElementById(cardId);
@@ -1240,8 +1158,8 @@
         // Waitlist / Notify Trigger
         function notifyMe(productName) {
             const email = prompt(`Enter your email to be the first to know when ${productName} drops:`);
-            if (email) {
-                alert(`You're locked in! We'll notify ${email} the second this item drops.`);
+            if (email && email.trim() !== '') {
+                alert(`You're locked in! We'll notify ${email.trim()} the second this item drops.`);
             }
         }
 
@@ -1267,13 +1185,15 @@
             });
         }
 
-        // Size Guide Modal Open/Close
+        // Size Guide Modal Open/Close with body scroll lock & ESC key listener
         function openSizeGuide() {
             document.getElementById('sizeGuideModal').classList.add('open');
+            document.body.classList.add('modal-open');
         }
 
         function closeSizeGuide() {
             document.getElementById('sizeGuideModal').classList.remove('open');
+            document.body.classList.remove('modal-open');
         }
 
         function closeOnBackdrop(e) {
@@ -1281,6 +1201,13 @@
                 closeSizeGuide();
             }
         }
+
+        // Keyboard accessibility: Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('sizeGuideModal').classList.contains('open')) {
+                closeSizeGuide();
+            }
+        });
     </script>
 </body>
 </html>
