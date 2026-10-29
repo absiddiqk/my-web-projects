@@ -1,0 +1,551 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Explore the character profile, skills, history and game appearances of Simon Ghost Riley from Call of Duty.">
+    <meta name="author" content="Giran Coded">
+
+    <title>Simon Ghost Riley | Character Wiki</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/jpeg" href="ghost.jpg">
+
+    <style>
+        /* GENERAL STYLING */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #101410;
+            background-image:
+                linear-gradient(
+                    rgba(10, 15, 10, 0.55),
+                    rgba(10, 15, 10, 0.65)
+                ),
+                url("ghost_pic.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #E5E7E4;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a {
+            color: #C3D0B5;
+        }
+
+        a:focus-visible {
+            outline: 2px solid #A6B88A;
+            outline-offset: 4px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 16px 5%;
+            background-color: rgba(27, 33, 27, 0.97);
+            border-bottom: 2px solid #78866B;
+        }
+
+        .logo {
+            color: #A6B88A;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 22px;
+            list-style: none;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        /* HERO HEADER */
+        .hero {
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 55px 20px;
+            background-color: rgba(20, 27, 20, 0.65);
+            border-bottom: 1px solid #394339;
+        }
+
+        .hero h1 {
+            color: #A6B88A;
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #C3D0B5;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            margin-top: 12px;
+            max-width: 650px;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            width: min(1100px, 100%);
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 35px 10px;
+            scroll-margin-top: 100px;
+        }
+
+        h2 {
+            color: #A6B88A;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #C3D0B5;
+            margin-bottom: 10px;
+        }
+
+        .section-intro {
+            color: #D0D7CB;
+            margin-bottom: 20px;
+        }
+
+        /* PROFILE */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            gap: 30px;
+            align-items: center;
+        }
+
+        .ghost-image {
+            display: block;
+            width: 100%;
+            max-height: 550px;
+            object-fit: cover;
+            object-position: center;
+            border: 2px solid #78866B;
+            border-radius: 10px;
+        }
+
+        .profile-text {
+            background-color: rgba(16, 20, 16, 0.82);
+            padding: 25px;
+            border-left: 4px solid #78866B;
+            border-radius: 8px;
+        }
+
+        .profile-text p {
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #303B2D;
+            color: #D6E3C7;
+            padding: 5px 12px;
+            margin: 4px 5px 4px 0;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        /* DETAILS TABLE */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(27, 33, 27, 0.94);
+        }
+
+        .details-table caption {
+            text-align: left;
+            padding: 12px;
+            color: #C3D0B5;
+        }
+
+        .details-table th,
+        .details-table td {
+            padding: 14px;
+            text-align: left;
+            border: 1px solid #465143;
+        }
+
+        .details-table th {
+            width: 35%;
+            color: #C3D0B5;
+            background-color: rgba(48, 59, 45, 0.9);
+        }
+
+        .details-table tr:hover {
+            background-color: rgba(120, 134, 107, 0.16);
+        }
+
+        /* ABILITIES */
+        .ability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .ability-card {
+            background-color: rgba(27, 33, 27, 0.94);
+            padding: 22px;
+            border: 1px solid #465143;
+            border-radius: 10px;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .ability-card:hover {
+            transform: translateY(-5px);
+            border-color: #A6B88A;
+        }
+
+        .ability-card p {
+            color: #D0D7CB;
+        }
+
+        /* APPEARANCES */
+        .appearance-list {
+            padding-left: 25px;
+        }
+
+        .appearance-list li {
+            padding: 8px 0;
+        }
+
+        .appearance-list li::marker {
+            color: #A6B88A;
+        }
+
+        /* QUOTE */
+        .quote {
+            margin: 15px 0 35px;
+            padding: 28px;
+            text-align: center;
+            font-size: 22px;
+            font-style: italic;
+            color: #D6E3C7;
+            background-color: rgba(16, 20, 16, 0.85);
+            border-left: 4px solid #78866B;
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: rgba(20, 26, 20, 0.98);
+            text-align: center;
+            padding: 30px 20px;
+            color: #A6B88A;
+            border-top: 2px solid #394339;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 750px) {
+            .navbar {
+                justify-content: center;
+            }
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .ghost-image {
+                max-width: 400px;
+                max-height: 500px;
+                margin: auto;
+            }
+
+            .ability-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            .navbar {
+                padding: 14px 10px;
+            }
+
+            .navbar ul {
+                justify-content: center;
+                gap: 10px 15px;
+            }
+
+            .navbar a {
+                font-size: 13px;
+            }
+
+            main {
+                padding: 12px;
+            }
+
+            section {
+                padding: 25px 5px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .ability-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-table th,
+            .details-table td {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .quote {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="logo">GHOST // INTEL</div>
+
+        <ul>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#details">Details</a></li>
+            <li><a href="#abilities">Abilities</a></li>
+            <li><a href="#appearances">Appearances</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>SIMON "GHOST" RILEY</h1>
+        <p>CALL OF DUTY CHARACTER WIKI</p>
+
+        <p class="subtitle">
+            Operator profile, background information and combat skills
+            of Task Force 141's iconic soldier.
+        </p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PROFILE -->
+        <section id="profile">
+            <h2>Character Profile</h2>
+
+            <div class="profile-layout">
+                <img
+                    src="ghost.jpg"
+                    alt="Simon Ghost Riley wearing his signature skull-patterned mask"
+                    class="ghost-image"
+                    loading="lazy"
+                >
+
+                <div class="profile-text">
+                    <h3>Who Is Ghost?</h3>
+
+                    <p>
+                        Simon "Ghost" Riley is a British special forces
+                        operator in the Call of Duty franchise. Known for
+                        his skull-patterned balaclava, tactical gear and
+                        serious personality, he is a prominent member of
+                        Task Force 141.
+                    </p>
+
+                    <p>
+                        Ghost is recognized for his experience in covert
+                        operations, his ability to work under pressure and
+                        his loyalty to his teammates.
+                    </p>
+
+                    <span class="tag">Task Force 141</span>
+                    <span class="tag">Special Forces</span>
+                    <span class="tag">Covert Operations</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHARACTER DETAILS -->
+        <section id="details">
+            <h2>Character Details</h2>
+
+            <div class="table-wrapper">
+                <table class="details-table">
+                    <caption>Simon's operator information</caption>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Full Name</th>
+                            <td>Simon Riley</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Call Sign</th>
+                            <td>Ghost</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Nationality</th>
+                            <td>British</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Occupation</th>
+                            <td>Special Forces Operator</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Affiliation</th>
+                            <td>Task Force 141</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Franchise</th>
+                            <td>Call of Duty</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ABILITIES -->
+        <section id="abilities">
+            <h2>Skills and Abilities</h2>
+
+            <p class="section-intro">
+                Ghost combines tactical experience with teamwork
+                and adaptability in dangerous operations.
+            </p>
+
+            <div class="ability-grid">
+
+                <article class="ability-card">
+                    <h3>Stealth</h3>
+                    <p>
+                        Specializes in covert operations, infiltration
+                        and moving through hostile areas while
+                        minimizing detection.
+                    </p>
+                </article>
+
+                <article class="ability-card">
+                    <h3>Combat</h3>
+                    <p>
+                        Experienced in tactical engagements, close-quarters
+                        combat and high-risk military missions.
+                    </p>
+                </article>
+
+                <article class="ability-card">
+                    <h3>Strategy</h3>
+                    <p>
+                        Works with his team to gather intelligence,
+                        plan missions and adapt to changing threats.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- APPEARANCES -->
+        <section id="appearances">
+            <h2>Major Game Appearances</h2>
+
+            <p class="section-intro">
+                Selected appearances of Simon "Ghost" Riley in
+                the Modern Warfare storyline.
+            </p>
+
+            <ul class="appearance-list">
+                <li>Call of Duty: Modern Warfare 2 (2009)</li>
+                <li>Call of Duty: Modern Warfare (2019)</li>
+                <li>Call of Duty: Modern Warfare II (2022)</li>
+                <li>Call of Duty: Modern Warfare III (2023)</li>
+            </ul>
+
+            <p>
+                <small>
+                    Note: Call of Duty: Ghosts (2013) is a separate
+                    game and does not feature Simon Riley as its main
+                    character.
+                </small>
+            </p>
+        </section>
+
+        <!-- QUOTE -->
+        <blockquote class="quote">
+            "The name's Ghost."
+        </blockquote>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>GIRAN CODED | GAMING CHARACTER WIKI</strong></p>
+        <p>Fan-made character reference for Call of Duty.</p>
+        <p><small>Call of Duty and its characters belong to their respective owners.</small></p>
+        <p><a href="#profile">Back to top</a></p>
+        <p>&copy; 2026 Giran Coded</p>
+    </footer>
+
+</body>
+</html>
+```
