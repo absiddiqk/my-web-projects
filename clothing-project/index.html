@@ -101,14 +101,17 @@
             gap: 30px;
         }
 
-        .nav-links a {
+        .nav-links a, .nav-links button {
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1.5px;
             transition: color .2s ease;
+            background: none;
+            border: none;
+            color: inherit;
         }
 
-        .nav-links a:hover { color: #69734d; }
+        .nav-links a:hover, .nav-links button:hover { color: #69734d; }
 
         .nav-actions {
             display: flex;
@@ -715,7 +718,7 @@
 
         .cart-checkout { width: 100%; }
 
-        /* CHECKOUT FORM */
+        /* CHECKOUT & CONTACT FORM */
         .checkout-intro {
             color: #6b675e;
             font-size: 13px;
@@ -926,7 +929,6 @@
             }
         }
 
-        /* MOBILE OPTIMIZATIONS (2 ITEMS PER ROW) */
         @media (max-width: 680px) {
             nav {
                 padding: 14px 16px;
@@ -945,7 +947,7 @@
                 border-top: 1px solid #dedbd2;
             }
 
-            .nav-links a {
+            .nav-links a, .nav-links button {
                 font-size: 10px;
                 letter-spacing: .8px;
             }
@@ -972,15 +974,12 @@
                 margin-bottom: 22px;
             }
 
-            /* 2 PRODUCTS IN ONE ROW */
             .product-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 22px 10px;
             }
 
-            .image-container {
-                margin-bottom: 8px;
-            }
+            .image-container { margin-bottom: 8px; }
 
             .product-meta-header {
                 flex-direction: column;
@@ -1011,22 +1010,16 @@
                 gap: 5px;
             }
 
-            .option-label {
-                font-size: 8.5px;
-            }
+            .option-label { font-size: 8.5px; }
 
-            .color-swatches {
-                gap: 6px;
-            }
+            .color-swatches { gap: 6px; }
 
             .swatch {
                 width: 15px;
                 height: 15px;
             }
 
-            .swatch::after {
-                inset: -3px;
-            }
+            .swatch::after { inset: -3px; }
 
             .size-pills {
                 gap: 4px;
@@ -1096,6 +1089,7 @@
                 <li><a href="#collection" onclick="filterCategory('henley')">HENLEYS</a></li>
                 <li><a href="#collection" onclick="filterCategory('trousers')">TROUSERS</a></li>
                 <li><a href="#about">ABOUT</a></li>
+                <li><button type="button" onclick="openContactModal()">CONTACT</button></li>
             </ul>
 
             <div class="nav-actions">
@@ -1498,6 +1492,49 @@
         </div>
     </div>
 
+    <!-- CONTACT INQUIRY MODAL -->
+    <div class="modal-overlay" id="contactModal" onclick="closeContactOnBackdrop(event)" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <div class="modal-card">
+            <button class="modal-close" type="button" onclick="closeContactModal()" aria-label="Close contact">&times;</button>
+
+            <p class="eyebrow">DISTRICT 09 / CONCIERGE</p>
+            <h2 id="contactTitle">CLIENT INQUIRIES</h2>
+            <p class="checkout-intro">
+                Have questions regarding fabric, fit, bespoke tailoring, or your order? Write to us directly.
+            </p>
+
+            <form id="contactForm" class="checkout-form" onsubmit="submitContactForm(event)">
+                <div class="checkout-fields">
+                    <div class="checkout-field">
+                        <label for="contactName">FULL NAME *</label>
+                        <input id="contactName" name="name" autocomplete="name" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="contactEmail">EMAIL ADDRESS *</label>
+                        <input id="contactEmail" type="email" name="email" autocomplete="email" required>
+                    </div>
+
+                    <div class="checkout-field full">
+                        <label for="contactSubject">SUBJECT</label>
+                        <input id="contactSubject" name="subject" placeholder="Sizing, custom request, or feedback">
+                    </div>
+
+                    <div class="checkout-field full">
+                        <label for="contactMessage">MESSAGE *</label>
+                        <textarea id="contactMessage" name="message" style="min-height: 110px;" placeholder="Tell us how we can assist you..." required></textarea>
+                    </div>
+                </div>
+
+                <p class="checkout-message" id="contactStatusMessage" aria-live="polite"></p>
+
+                <button class="button checkout-submit" type="submit" id="contactSubmit">
+                    SEND INQUIRY
+                </button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-content">
             <a href="#home" class="logo">DISTRICT 09 <span>COLLECTION</span></a>
@@ -1507,6 +1544,7 @@
             <div class="footer-links">
                 <a href="#collection">SHOP</a>
                 <button type="button" onclick="openSizeGuide()">SIZE GUIDE</button>
+                <button type="button" onclick="openContactModal()">CONTACT</button>
                 <a href="#about">ABOUT</a>
                 <a href="#home">TOP &uarr;</a>
             </div>
@@ -1515,8 +1553,6 @@
 
     <script>
         const WHATSAPP_NUMBER = "2349052191505";
-        const STORE_EMAIL = "KUTEMIABUBAKARSIDDIQ@GMAIL.COM";
-        const FORM_SUBMIT_ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(STORE_EMAIL);
 
         const PRODUCT_PRICES = {
             "Classic Henley": 25000,
@@ -1541,31 +1577,6 @@
         function openWhatsApp(message) {
             const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
             window.open(url, "_blank", "noopener,noreferrer");
-        }
-
-        async function sendEmailForm(data) {
-            const response = await fetch(FORM_SUBMIT_ENDPOINT, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    ...data,
-                    _captcha: "false"
-                })
-            });
-
-            let result = {};
-            try {
-                result = await response.json();
-            } catch (error) {}
-
-            if (!response.ok || result.success === false) {
-                throw new Error(result.message || "The email submission could not be completed.");
-            }
-
-            return result;
         }
 
         // COLOR SELECTION
@@ -1608,7 +1619,7 @@
             if (sizeLabel) sizeLabel.textContent = sizeName;
         }
 
-        // UNIFIED ADD TO BAG WITH INTERACTION FEEDBACK
+        // ADD TO BAG
         function addSelectedProduct(button, itemName, cardId) {
             const card = document.getElementById(cardId);
             if (!card) return;
@@ -1775,6 +1786,22 @@
             if (event.target.id === "checkoutModal") closeCheckout();
         }
 
+        // CONTACT MODAL TOGGLES
+        function openContactModal() {
+            document.getElementById("contactModal").classList.add("open");
+            document.body.classList.add("modal-open");
+        }
+
+        function closeContactModal() {
+            document.getElementById("contactModal").classList.remove("open");
+            unlockBodyIfNoModal();
+        }
+
+        function closeContactOnBackdrop(event) {
+            if (event.target.id === "contactModal") closeContactModal();
+        }
+
+        // 1. ORDER SUBMISSION (GMAIL API)
         async function submitWebsiteOrder(event) {
             event.preventDefault();
             if (bag.length === 0) {
@@ -1798,34 +1825,35 @@
 
             const orderedItems = bag.map(item => ({ ...item }));
             const orderTotal = orderedItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-            const orderLines = orderedItems.map(item =>
-                `${item.name} | Color: ${item.color} | Size: ${item.size} | Qty: ${item.quantity} | ${money(item.price * item.quantity)}`
-            );
 
             submitButton.disabled = true;
-            submitButton.textContent = "SUBMITTING ORDER...";
+            submitButton.textContent = "PROCESSING ORDER...";
             messageElement.classList.remove("error");
-            messageElement.textContent = "Submitting your order details...";
+            messageElement.textContent = "Placing your order and generating confirmation...";
 
             try {
-                await sendEmailForm({
-                    _subject: "New District 09 Website Order",
-                    _template: "table",
-                    customer_name: customer.name,
-                    customer_email: customer.email,
-                    customer_phone: customer.phone,
-                    delivery_city_state: customer.city_state,
-                    delivery_address: customer.address,
-                    customer_notes: customer.order_note || "None",
-                    order_items: orderLines.join("\n"),
-                    product_total: money(orderTotal),
-                    delivery_fee: "To be confirmed"
+                const response = await fetch('/api/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer: customer,
+                        items: orderedItems,
+                        totalAmount: money(orderTotal),
+                        shippingAddress: `${customer.address}, ${customer.city_state}`
+                    })
                 });
 
-                messageElement.textContent = "Your order details have been submitted. Forwarding to WhatsApp for confirmation...";
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Failed to place order.');
+
+                messageElement.textContent = `Order placed! Confirmation sent to ${customer.email}. Connecting to WhatsApp...`;
+
+                const orderLines = orderedItems.map(item =>
+                    `${item.name} | Color: ${item.color} | Size: ${item.size} | Qty: ${item.quantity} | ${money(item.price * item.quantity)}`
+                );
 
                 const whatsappMessage = [
-                    "Hello District 09, I have submitted an order through your website.",
+                    `Hello District 09, I submitted order #${result.orderId} on your website.`,
                     "",
                     "CUSTOMER DETAILS",
                     `Name: ${customer.name}`,
@@ -1835,25 +1863,102 @@
                     `Address: ${customer.address}`,
                     `Notes: ${customer.order_note || "None"}`,
                     "",
-                    "ORDER",
+                    "ORDER SUMMARY",
                     ...orderLines,
                     "",
                     `Product total: ${money(orderTotal)}`,
-                    "Please confirm availability and delivery schedule."
+                    "Please confirm dispatch and receipt."
                 ].join("\n");
 
-                openWhatsApp(whatsappMessage);
+                setTimeout(() => {
+                    openWhatsApp(whatsappMessage);
+                    bag = [];
+                    renderCart();
+                    form.reset();
+                    closeCheckout();
+                }, 1600);
 
-                bag = [];
-                renderCart();
-                form.reset();
             } catch (error) {
                 console.error(error);
-                messageElement.textContent = "Order submission error. Please order directly via WhatsApp.";
+                messageElement.textContent = error.message || "Order submission error. Please order directly via WhatsApp.";
                 messageElement.classList.add("error");
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = "SUBMIT ORDER";
+            }
+        }
+
+        // 2. CONTACT FORM SUBMISSION (GMAIL API)
+        async function submitContactForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = document.getElementById("contactSubmit");
+            const statusEl = document.getElementById("contactStatusMessage");
+
+            const formData = new FormData(form);
+            const payload = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                subject: formData.get("subject"),
+                message: formData.get("message")
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "SENDING...";
+            statusEl.classList.remove("error");
+            statusEl.textContent = "Dispatching inquiry...";
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error('Failed to send inquiry.');
+
+                statusEl.textContent = "Inquiry sent. Check your inbox for confirmation.";
+                statusEl.style.color = "#69734d";
+                form.reset();
+                setTimeout(() => closeContactModal(), 2000);
+            } catch (err) {
+                statusEl.textContent = "Could not send message. Please retry or contact on WhatsApp.";
+                statusEl.classList.add("error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "SEND INQUIRY";
+            }
+        }
+
+        // 3. NEWSLETTER SUBSCRIPTION (GMAIL API)
+        async function subscribeToEmail(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.elements.email.value.trim();
+            const submitButton = document.getElementById("newsletterSubmit");
+            const messageElement = document.getElementById("newsletterMessage");
+
+            submitButton.disabled = true;
+            submitButton.textContent = "SUBMITTING...";
+
+            try {
+                const response = await fetch('/api/newsletter', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) throw new Error('Subscription failed.');
+
+                messageElement.textContent = "Welcome to the District 09 inner circle. Confirmation sent.";
+                messageElement.style.color = "#69734d";
+                form.reset();
+            } catch (error) {
+                messageElement.textContent = "Signup failed. Please try again.";
+                messageElement.style.color = "#a82424";
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "GET UPDATES";
             }
         }
 
@@ -1878,34 +1983,6 @@
 
         function notifyMe(productName) {
             openWhatsApp(`Hello District 09. Please notify me when ${productName} drops.`);
-        }
-
-        async function subscribeToEmail(event) {
-            event.preventDefault();
-            const form = event.target;
-            const email = form.elements.email.value.trim();
-            const submitButton = document.getElementById("newsletterSubmit");
-            const messageElement = document.getElementById("newsletterMessage");
-
-            submitButton.disabled = true;
-            submitButton.textContent = "SUBMITTING...";
-
-            try {
-                await sendEmailForm({
-                    _subject: "New District 09 Newsletter Signup",
-                    signup_email: email,
-                    signup_date: new Date().toLocaleString("en-NG")
-                });
-                messageElement.textContent = "Welcome to the District 09 inner circle.";
-                messageElement.style.color = "#69734d";
-                form.reset();
-            } catch (error) {
-                messageElement.textContent = "Signup failed. Please try again.";
-                messageElement.style.color = "#a82424";
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = "GET UPDATES";
-            }
         }
 
         function filterCategory(category) {
@@ -1942,7 +2019,8 @@
             const sizeOpen = document.getElementById("sizeGuideModal").classList.contains("open");
             const cartOpen = document.getElementById("cartModal").classList.contains("open");
             const checkoutOpen = document.getElementById("checkoutModal").classList.contains("open");
-            if (!sizeOpen && !cartOpen && !checkoutOpen) {
+            const contactOpen = document.getElementById("contactModal").classList.contains("open");
+            if (!sizeOpen && !cartOpen && !checkoutOpen && !contactOpen) {
                 document.body.classList.remove("modal-open");
             }
         }
@@ -1952,6 +2030,7 @@
                 closeSizeGuide();
                 closeCart();
                 closeCheckout();
+                closeContactModal();
             }
         });
 
